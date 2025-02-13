@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blast & Smash Arena</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts: Inter (일반 UI) & Orbitron (디지털 UI) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <h1>Blast & Smash Arena</h1>
+      <p class="tagline">우주의 적들을 물리치고, 당신의 실력을 증명하라!</p>
+    </div>
+  </header>
+
+  <!-- UI 컨테이너: 게임 내 정보를 표시 -->
+  <div id="ui">
+    <div id="score">Score: 0</div>
+    <div id="wave">Wave: 1</div>
+    <div id="multiplier">Multiplier: x1.0</div>
+    <div id="upgrades">
+      <button id="upgradeBtn">Upgrade Turret</button>
+      <span id="upgradeCost">Cost: 50</span>
+    </div>
+    <div id="powerup">
+      Power-Up: <span id="powerupStatus">None</span>
+    </div>
+    <div id="bossHealthBar" style="display: none;">
+      Boss Health: <span id="bossHealth">0</span>
+    </div>
+    <!-- 클리커 및 추가 요소 -->
+    <div id="autoClickerStatus">Auto Clickers: 0 (Cost: 100)</div>
+    <button id="autoClickerBtn">Buy Auto Clicker</button>
+    <button id="activateAutoClickerBtn">Activate Auto Clicker</button>
+    <div id="prestigeStatus">Prestige Points: 0 (Multiplier: x1.00)</div>
+    <button id="prestigeBtn">Prestige</button>
+  </div>
+
+  <!-- 게임 캔버스 -->
+  <canvas id="gameCanvas" width="800" height="600"></canvas>
+
+  <footer>
+    <p>Designed & Developed by ChatGPT</p>
+    <button id="darkModeButton">다크 모드</button>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
