@@ -1,0 +1,264 @@
+/* 새롭게 제작한 UI 바 디자인 (Glassmorphism 스타일) */
+
+/* Import Google Fonts: Inter & Orbitron */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* WHITE MODE VARIABLES (Default) */
+:root {
+  --primary-bg: #ffffff;
+  --secondary-bg: rgba(240, 240, 240, 0.95);
+  --accent-color: #0066ff;
+  --text-color: #333333;
+  --header-bg: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  --button-bg: #0066ff;
+  --button-hover: #0055dd;
+  --transition-speed: 0.3s;
+  --font-size-header: 3rem;
+  --font-size-tagline: 1.2rem;
+}
+
+/* DARK MODE OVERRIDES */
+body.dark-mode {
+  --primary-bg: #181818;
+  --secondary-bg: rgba(40, 40, 40, 0.9);
+  --accent-color: #ff5252;
+  --text-color: #ffffff;
+  --header-bg: linear-gradient(135deg, #232526, #414345);
+  --button-bg: #ff5252;
+  --button-hover: #ff1744;
+}
+
+/* Body Styles */
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--primary-bg);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  transition: background var(--transition-speed), color var(--transition-speed);
+}
+
+/* Header with Advanced 3D & Animated Effects */
+header {
+  position: relative;
+  padding: 50px 20px;
+  text-align: center;
+  overflow: hidden;
+  perspective: 1000px;
+  background: var(--header-bg);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: background var(--transition-speed);
+}
+header::before {
+  content: '';
+  position: absolute;
+  top: -120%;
+  left: -120%;
+  width: 340%;
+  height: 340%;
+  background: conic-gradient(from 0deg, var(--accent-color), transparent, var(--accent-color));
+  animation: rotateSlow 25s linear infinite;
+  filter: blur(25px);
+  opacity: 0.4;
+  z-index: 0;
+}
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.header-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+header h1 {
+  font-size: var(--font-size-header);
+  font-weight: 600;
+  color: var(--text-color);
+  text-shadow: 0 2px 8px var(--accent-color);
+  animation: fadeInUp 1s ease-out forwards;
+  opacity: 0;
+}
+header .tagline {
+  font-size: var(--font-size-tagline);
+  color: var(--text-color);
+  opacity: 0.85;
+  animation: fadeInUp 1.2s ease-out forwards;
+  opacity: 0;
+}
+@keyframes fadeInUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* --- UI 컨테이너 --- */
+#ui {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px 40px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+  transition: all 0.3s ease;
+}
+
+/* --- UI 바 내부 요소들 --- */
+#ui > * {
+  flex: 1;
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  color: var(--accent-color);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  padding: 12px 15px;
+  border: 1px solid var(--accent-color);
+  border-radius: 10px;
+  background: rgba(0, 102, 255, 0.12);
+  box-shadow: 0 3px 12px rgba(0, 102, 255, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 호버 효과 */
+#ui > *:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 20px var(--accent-color);
+}
+
+/* --- Score UI --- */
+#score {
+  flex: 2;
+  font-size: 2rem;
+  letter-spacing: 2px;
+  font-weight: bold;
+  background: rgba(0, 102, 255, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px var(--accent-color);
+  min-width: 180px;
+}
+
+/* 다크 모드 (UI 바 전반) */
+body.dark-mode #ui {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+body.dark-mode #ui > * {
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+  background: rgba(255, 82, 82, 0.25);
+  box-shadow: 0 3px 12px rgba(255, 82, 82, 0.35);
+}
+body.dark-mode #score {
+  background: rgba(255, 82, 82, 0.3);
+  box-shadow: 0 0 20px var(--accent-color);
+}
+
+/* --- 인게임 업적 알림 팝업 --- */
+.achievement-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.85);
+  color: #FFD700;
+  padding: 15px 25px;
+  border-radius: 12px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+.achievement-notification.fade-out {
+  opacity: 0;
+}
+
+/* --- Canvas Styles --- */
+canvas {
+  display: block;
+  margin: 30px auto;
+  border: 4px solid var(--accent-color);
+  border-radius: 20px;
+  background: radial-gradient(ellipse at center, var(--secondary-bg) 0%, #000 85%);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+canvas:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 35px var(--accent-color);
+}
+
+/* --- Footer Styles --- */
+footer {
+  margin-top: auto;
+  padding: 25px;
+  background: var(--secondary-bg);
+  text-align: center;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background var(--transition-speed);
+}
+footer p {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  animation: fadeInUp 1s ease-out forwards;
+  opacity: 0;
+  text-shadow: 0 2px 6px var(--accent-color);
+}
+footer button {
+  padding: 14px 26px;
+  border: none;
+  border-radius: 12px;
+  background: var(--button-bg);
+  color: var(--primary-bg);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+footer button:hover {
+  background: var(--button-hover);
+  transform: scale(1.05);
+  box-shadow: 0 0 25px var(--accent-color);
+}
+
+/* --- Responsive 사이즈 조절 --- */
+@media (max-width: 1024px) {
+  #ui {
+    max-width: 90%;
+    gap: 15px;
+    padding: 15px 30px;
+  }
+  #score {
+    font-size: 1.8rem;
+    min-width: 160px;
+  }
+}
+
+@media (max-width: 768px) {
+  #ui {
+    max-width: 95%;
+    gap: 10px;
+    padding: 12px 20px;
+  }
+  #score {
+    font-size: 1.6rem;
+    min-width: 150px;
+  }
+}
